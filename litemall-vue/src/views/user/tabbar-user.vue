@@ -16,6 +16,7 @@ import userModule from './tabbar-user-module';
 
 import { removeLocalStorage } from '@/utils/local-storage';
 import { authLogout } from '@/api/api';
+import { setTimeout } from 'timers';
 
 export default {
   data() {
@@ -30,8 +31,12 @@ export default {
 
   methods: {
     quit() {
-      authLogout();
-      this.$router.push({ name: 'login' });
+      authLogout().then(res => {
+        localStorage.setItem('Authorization', '');
+        localStorage.setItem('nickName', '');
+        localStorage.setItem('inviteCode', '');
+        this.$router.push({ name: 'login' });
+      });
     },
     getLoginStatus() {
       this.isLogin =

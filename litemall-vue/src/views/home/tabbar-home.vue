@@ -53,8 +53,8 @@
         :key="index"
         :title="grouponGood.name"
         :desc="grouponGood.brief"
-        :origin-price="grouponGood.retailPrice"
-        :price="grouponGood.grouponPrice +'.00'"
+        :origin-price="inviteCode ? grouponGood.retailPrice : '***'"
+        :price="inviteCode ? grouponGood.grouponPrice +'.00' : '***'"
         :thumb="grouponGood.picUrl"
         @native-click="goDetail(grouponGood.id)"
       >
@@ -87,7 +87,7 @@
           >{{newGood.name}}</span>
           <span
             style="padding-left: 80px;position: relative;bottom: 10px; color:#ab956d"
-          >￥ {{newGood.retailPrice}}</span>
+          >￥ {{inviteCode ? newGood.retailPrice : '***'}}</span>
         </van-col>
       </van-row>
     </van-panel>
@@ -99,8 +99,8 @@
         :key="index"
         :title="groupGood.name"
         :desc="groupGood.brief"
-        :origin-price="groupGood.counterPrice"
-        :price="groupGood.retailPrice +'.00'"
+        :origin-price="inviteCode ? groupGood.counterPrice : '***'"
+        :price="inviteCode ? groupGood.retailPrice +'.00': '***'"
         :thumb="groupGood.picUrl"
         @native-click="goDetail(groupGood.id)"
       >
@@ -141,12 +141,16 @@ export default {
     return {
       brandList: [],
       shopInfos: [],
-      isLoading: false
+      isLoading: false,
+      inviteCode: localStorage.getItem('inviteCode') || ''
     };
   },
 
   created() {
     this.initViews();
+  },
+  activated() {
+    this.inviteCode = localStorage.getItem('inviteCode') || ''
   },
 
   methods: {

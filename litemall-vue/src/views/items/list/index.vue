@@ -1,5 +1,5 @@
 <template>
-  <div class="item_list over-hide">
+  <div class="item_list">
     <van-tabs v-model="navActive" @click="handleTabClick">
       <van-tab v-for="(nav, index) in navList" :title="nav.name" :key="index">
         <!-- <InfinityScroll
@@ -91,7 +91,12 @@ export default {
     goodsList({categoryId: this.categoryId}).then(res => {
       this.goodsList= res.data.data.list
     });
-  },  
+  },
+  itemClick (id) {
+    this.$router.push({
+      path: `/items/detail/${id}`,
+    });
+  }
 },
 
   components: {

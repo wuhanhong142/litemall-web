@@ -47,12 +47,12 @@ export default {
     };
   },
   created() {
-    this.init();
+    // this.init();
   },
   methods: {
     init() {
       userIndex().then(res => {
-      this.order = res.data.data.order;
+        this.order = res.data.data.order;
       });
     }
   },

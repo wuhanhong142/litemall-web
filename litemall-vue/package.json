@@ -1,8 +1,7 @@
 {
-  "name": "litemall-vue",
+  "name": "vue-h5",
   "version": "0.1.0",
-  "description": "litemall-vue basing on vant--mobile-mall 0.1.0",
-  "author": "litemall <linlinjava@163.com>",
+  "description": "vue-h5 basing on vant--mobile-mall 0.1.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -26,9 +25,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
-    "@vue/cli-plugin-eslint": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
-    "@vue/eslint-config-prettier": "^3.0.5",
     "babel-plugin-import": "^1.9.1",
     "babel-plugin-lodash": "^3.3.4",
     "node-sass": "^4.9.3",

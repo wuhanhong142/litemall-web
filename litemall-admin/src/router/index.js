@@ -528,47 +528,6 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: 'external-link',
-    component: Layout,
-    redirect: 'noredirect',
-    alwaysShow: true,
-    name: 'externalLink',
-    meta: {
-      title: '外链',
-      icon: 'link'
-    },
-    children: [
-      {
-        path: 'https://cloud.tencent.com/product/cos',
-        meta: { title: '腾讯云存储', icon: 'link' }
-      },
-      {
-        path: 'https://cloud.tencent.com/product/sms',
-        meta: { title: '腾讯云短信', icon: 'link' }
-      },
-      {
-        path: 'https://pay.weixin.qq.com/index.php/core/home/login',
-        meta: { title: '微信支付', icon: 'link' }
-      },
-      {
-        path: 'https://mpkf.weixin.qq.com/',
-        meta: { title: '小程序客服', icon: 'link' }
-      },
-      {
-        path: 'https://www.alibabacloud.com/zh/product/oss',
-        meta: { title: '阿里云存储', icon: 'link' }
-      },
-      {
-        path: 'https://www.qiniu.com/products/kodo',
-        meta: { title: '七牛云存储', icon: 'link' }
-      },
-      {
-        path: 'http://www.kdniao.com/api-track',
-        meta: { title: '快递鸟', icon: 'link' }
-      }
-    ]
-  },
-  {
     path: '/profile',
     component: Layout,
     redirect: 'noredirect',
@@ -582,6 +541,25 @@ export const asyncRouterMap = [
       }
     ],
     hidden: true
+  },
+  {
+    path: '/inviteCode',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    meta: {
+      title: '邀请码',
+      icon: 'chart'
+    },
+    children: [
+      {
+        path: 'inviteCode',
+        component: () => import('@/views/inviteCode/index'),
+        perms: ['POST /admin/busiUser/list', 'POST /admin/busiUser/create', 'POST /admin/busiUser/update', 'POST /admin/busiUser/delete'],
+        name: 'inviteCode',
+        meta: { title: '邀请码管理', noCache: true }
+      }
+    ]
   },
 
   { path: '*', redirect: '/404', hidden: true }

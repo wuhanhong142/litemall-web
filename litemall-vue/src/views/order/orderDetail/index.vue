@@ -134,7 +134,7 @@ export default {
     },    
     payOrder(){
 
-    },     
+    },
     cancelOrder(){
      Dialog.confirm({
           message: '确定取消此订单？'

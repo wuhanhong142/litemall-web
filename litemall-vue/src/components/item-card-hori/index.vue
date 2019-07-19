@@ -25,9 +25,13 @@
         <div class="item_card_info_desc">{{goods.brief}}</div>
 
         <div class="item_card_footer">
-          <div class="footer_price">
+          <div class="footer_price" v-if="inviteCode">
             <span>{{goods.retailPrice * 100 | yuan}}</span>
             <span class="marketPrice" v-if="goods.counterPrice">{{goods.counterPrice * 100 | yuan}}</span>
+          </div>
+          <div class="footer_price" v-else>
+            <span>***</span>
+            <span class="marketPrice" v-if="goods.counterPrice">***</span>
           </div>
 
           <div class="footer_desc" v-if="$slots.footer">
@@ -45,7 +49,15 @@ import item_mix from '@/mixin/item-card';
 
 export default {
   name: 'item-card-hori',
-  mixins: [item_mix]
+  mixins: [item_mix],
+  data () {
+    return {
+      inviteCode: localStorage.getItem('inviteCode') || ''
+    }
+  },
+  activated() {
+    this.inviteCode = localStorage.getItem('inviteCode') || ''
+  },
 };
 </script>
 

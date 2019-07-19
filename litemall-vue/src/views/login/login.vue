@@ -4,14 +4,14 @@
 		<div class="store_avatar">
 			<img src="../../assets/images/avatar_default.png" alt="头像" width="55" height="55">
 		</div>
-		<div class="store_name">litemall-vue</div>
+		<!-- <div class="store_name">vue</div> -->
 	</div>
 
     <md-field-group>
       <md-field
         v-model="account"
         icon="username"
-        placeholder="请输入测试账号 user123"
+        placeholder="请输入用户名"
         right-icon="clear-full"
         name="user"
         data-vv-as="帐号"
@@ -21,7 +21,7 @@
       <md-field
         v-model="password"
         icon="lock"
-        placeholder="请输入测试密码 user123"
+        placeholder="请输入密码"
         :type="visiblePass ? 'text' : 'password'"
         :right-icon="visiblePass ? 'eye-open' : 'eye-close'"
         data-vv-as="密码"
@@ -42,7 +42,7 @@
     </md-field-group>
 
 
-      <div class="text-desc text-center bottom_positon">技术支持: litemall</div>
+      <div class="text-desc text-center bottom_positon">版权所有: </div>
 
 	</div>
 </template>
@@ -91,7 +91,9 @@ export default {
         setLocalStorage({
           Authorization: res.data.data.token,
           avatar: this.userInfo.avatarUrl,
-          nickName: this.userInfo.nickName
+          nickName: this.userInfo.nickName,
+          inviteCode: res.data.data.inviteCode || '',
+          userId: res.data.data.userId || ''
         });
 
         this.routerRedirect();

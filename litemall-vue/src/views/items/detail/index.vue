@@ -8,8 +8,10 @@
     <van-cell-group class="item_cell_group" v-if="goods">
       <van-cell class="item_info">
         <div>
-          <span class="item_price">{{ goods.info.retailPrice*100 | yuan }}</span>
-          <span class="item_market_price">{{goods.info.counterPrice*100 | yuan}}</span>
+          <span class="item_price" v-if="inviteCode">{{ goods.info.retailPrice*100 | yuan }}</span>
+          <span class="item_price" v-else>***</span>
+          <span class="item_market_price" v-if="inviteCode">{{goods.info.counterPrice*100 | yuan}}</span>
+          <span class="item_price" v-else>***</span>
         </div>
         <div class="item-title">
           {{ goods.info.name }}
@@ -54,8 +56,8 @@
     <van-goods-action>
       <van-goods-action-mini-btn @click="toCart" icon="cart-o" :info="(cartInfo > 0) ? cartInfo : ''"/>
       <van-goods-action-mini-btn @click="addCollect" icon="star-o" :style="(goods.userHasCollect !== 0) ? 'color: #f7b444;':''"/>
-      <van-goods-action-big-btn @click="skuClick" text="加入购物车"/>
-      <van-goods-action-big-btn primary @click="skuClick" text="立即购买"/>
+      <van-goods-action-big-btn :disabled="!inviteCode" @click="skuClick" text="加入购物车"/>
+      <van-goods-action-big-btn :disabled="!inviteCode" primary @click="skuClick" text="立即购买"/>
     </van-goods-action>
 
   </div>
@@ -105,7 +107,8 @@ export default {
         }
       },
       propsPopup: false,
-      showSku: false
+      showSku: false,
+      inviteCode: localStorage.getItem('inviteCode') || ''
     };
   },
 
@@ -356,7 +359,7 @@ computed: {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .item_detail {
   img {
     max-width: 100%;
@@ -416,4 +419,14 @@ computed: {
   padding: 10px 0;
   text-align: center;
 }
+.item_detail {
+  .item_desc {
+    .item_desc_wrap {
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
 </style>

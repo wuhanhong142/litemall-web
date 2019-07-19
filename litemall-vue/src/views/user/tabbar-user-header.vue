@@ -2,9 +2,9 @@
   <div class="user_header" :style="{backgroundImage: `url(${background_image})`}">
     <van-icon name="set" class="user_set" @click="toSetting"/>
     <div class="user_avatar">
-      <img :src="avatar" alt="头像" width="55" height="55">
+      <img :src="avatar" alt="头像" width="55" height="55" @click="gotologin">
     </div>
-    <div>{{nickName}}</div>
+    <div @click="gotologin">{{nickName}}</div>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 
   data() {
     return {
-      nickName: '昵称',
+      nickName: '未登录',
       avatar: avatar_default,
       background_image: bg_default
     };
@@ -42,10 +42,15 @@ export default {
         'avatar'
       );
       this.avatar = avatar_default;
-      this.nickName = infoData.nickName || '昵称';
+      this.nickName = infoData.nickName || '未登录';
     },
     toSetting() {
       this.$router.push({ name: 'user-information' });
+    },
+    gotologin () {
+      if(this.nickName == '未登录') {
+        window.location = '#/login/'
+      }
     }
   }
 };

@@ -394,5 +394,18 @@ export function getList(api, query) {
     params: query
   })
 }
+const busiUser='wx/busiUser/bind'; //绑定邀请码
+export function busiUserBind(code) {
+  let data
+  data = {
+    code
+  }
+  return request({
+    url: busiUser,
+    method: 'post',
+    data,
+    formType: 1
+  })
+}
 
 export const REFUND_LIST = '';

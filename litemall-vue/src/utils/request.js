@@ -15,6 +15,17 @@ service.interceptors.request.use(
         'Authorization'
       ) || ''}`;
     }
+    if (config.formType && config.formType == 1) {
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+      config.transformRequest = [function(data) {
+          // Do whatever you want to transform the data
+          let ret = ''
+          for (let it in data) {
+              ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          }
+          return ret.substring(0, ret.length - 1)
+      }]
+    }
     return config;
   },
   err => Promise.reject(err)
